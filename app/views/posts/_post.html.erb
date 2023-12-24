@@ -1,0 +1,4 @@
+<td><%= post.id %></td>
+<td><%= link_to post.title, post_path(post.id) %></td>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+<td><%= post.comment %></td>

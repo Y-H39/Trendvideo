@@ -1,0 +1,16 @@
+</div>
+  <h3>詳細</h3>
+  <table>  
+    <tbody>
+      <%= form_with(model: @post) do |f| %>
+        <tr>
+          <td><%= @post.id %></td>
+          <td><%= @post.title %></td>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.url.last(31) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+          <td><%= @post.comment %></td>
+          <td><%= link_to '削除する', post_path(@post.id), data: { turbo_method: :delete } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>
