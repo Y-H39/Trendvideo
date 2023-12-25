@@ -1,6 +1,31 @@
-<% if user_signed_in? %>
-  <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to 'ログイン', new_user_session_path %>
-  <%= link_to '新規登録', new_user_registration_path %>
-<% end %>
+<table>
+  <div>
+    <% if user_signed_in? %>
+      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to '新規登録', new_user_registration_path %>
+    <% end %>
+  </div>
+  <tbody>
+    <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
+      <tr>
+        <td>第<%= i %>位</td>
+        <td><%= post.title %></td>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+        <td><%= post.comment %></td>
+        <% if user_signed_in? %>
+          <% if post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(post), data: { "turbo-method": :delete } do %>
+              <%= post.favorites.count %> いいね
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post), data: { "turbo-method": :post } do %>
+              <%= post.favorites.count %> いいね
+            <% end %>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
