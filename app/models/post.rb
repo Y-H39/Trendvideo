@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  def self.trend
+    Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+  end
 end
