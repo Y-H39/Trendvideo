@@ -1,0 +1,12 @@
+<%= form_with(model: @post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <th><%= f.label :title ,"タイトル" %></th>
+    <td><%= f.text_field :title %></td>
+    <th><%= f.label :url ,"URL" %></th>
+    <td><%= f.text_field :url %></td>
+    <th><%= f.label :comment ,"コメント" %></th>
+    <td><%= f.text_area :comment %></td>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

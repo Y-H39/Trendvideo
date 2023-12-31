@@ -2,18 +2,14 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
   end
-
-  def new
-    @post = Post.new
-  end
   
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = current_user.posts.build(post_params)
     if @post.save
+      flash[:notice] = "Post created!"
       redirect_to posts_path
-     else
-      render :new
+    else
+      render 'pages/home', status: :unprocessable_entity
      end
   end
   
