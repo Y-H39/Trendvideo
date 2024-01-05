@@ -1,19 +1,22 @@
-      <%= link_to gravatar_for(post.user, size: 50), post.user %>
-      <span class="user"><%= link_to post.user.name, post.user %></span>
-      <span><%= post.title %></span>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-      <span class="comment"><%= post.comment %></span>
-      <% if user_signed_in? %>
-        <% if post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(post), data: { "turbo-method": :delete } do %>
-            <%= post.favorites.count %> いいね
-          <% end %>
-        <% else %>
-          <%= link_to post_favorites_path(post), data: { "turbo-method": :post } do %>
-            <%= post.favorites.count %> いいね
-          <% end %>
-        <% end %>
-      <% end %>
-      <span class="timestamp">
-        Posted <%= time_ago_in_words(post.created_at) %> ago.
-      </span>
+<%= link_to gravatar_for(post.user, size: 50), post.user %>
+<span class="user"><%= link_to post.user.name, post.user %></span>
+<span><%= post.title %></span>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+<span class="comment"><%= post.comment %></span>
+<% if user_signed_in? %>
+  <% if post.favorited_by?(current_user) %>
+    <%= link_to post_favorites_path(post), data: { "turbo-method": :delete } do %>
+      <%= post.favorites.count %> いいね
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(post), data: { "turbo-method": :post } do %>
+      <%= post.favorites.count %> いいね
+    <% end %>
+  <% end %>
+<% end %>
+<span class="timestamp">
+  Posted <%= time_ago_in_words(post.created_at) %> ago.
+</span>
+<% if post.user == current_user %>
+  <%= link_to "delete", post_path(post.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+<% end %>
