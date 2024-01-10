@@ -1,6 +1,10 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "rank app", root_path, id: "logo" %>
+    <%= search_form_for @q, url: posts_path do |f| %>
+      <%= f.text_field :title_cont, placeholder: '動画を検索' %>
+    <%= f.submit ("検索する") %>
+    <% end %>
     <nav>
       <div class="navbar-header">
         <button id="hamburger" type="button" class="navbar-toggle collapsed">
