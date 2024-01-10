@@ -22,11 +22,15 @@ RSpec.describe 'Post management', type: :system do
           expect(page).to have_content('Post created!')
           expect(page).to have_content('テスト')
 
+          click_on 'いいね', match: :first
+          expect(page).to have_content('1 いいね')
+
           click_on 'delete', match: :first
           page.driver.browser.switch_to.alert.accept
 
           expect(page).to have_content('Post deleted')
           expect(page).to_not have_content('テスト')
+          expect(page).to_not have_content('いいね')
         end
       end
     end
