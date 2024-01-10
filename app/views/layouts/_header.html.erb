@@ -1,12 +1,18 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "rank app", root_path, id: "logo" %>
-    <%= search_form_for @q, url: posts_path do |f| %>
-      <%= f.text_field :title_cont, placeholder: '動画を検索' %>
-    <%= f.submit ("検索する") %>
-    <% end %>
     <nav>
       <div class="navbar-header">
+        <div class="navbar-form">
+          <%= search_form_for @q, url: posts_path, html: { class: "form-inline", role: "form" } do |f| %>
+            <div class="input-group">
+              <%= f.text_field :title_cont, class: "form-control", placeholder: '動画を検索' %>
+              <span class="input-group-btn">
+                <%= f.submit "検索する", class: "btn btn-default" %>
+              </span>
+            </div>
+          <% end %>
+        </div>
         <button id="hamburger" type="button" class="navbar-toggle collapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
