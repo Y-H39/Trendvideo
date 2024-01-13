@@ -77,6 +77,10 @@ p {
   }
 }
 
+.navbar-left{
+  padding-top: 9px;
+}
+
 /* miscellaneous */
 
 .debug_dump {
@@ -179,28 +183,53 @@ input {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .rank{
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-weight   : bold;
+    font-size     : 150%; 
+    color         : #000000;
   }
   .user {
     margin-top: 5em;
     padding-top: 0;
   }
-  .comment {
+  .title{
     display: block;
+    margin-top: 5px;
+    font-weight   : bold;
+    font-size     : 150%; 
+    color         : #000000;
+  }
+  .url {
+    margin-top: 5px;
+  }
+  .comment {
+    float: left;
+    display: block;
+    margin-top: 5px;
     margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
+    margin-right: 10px;
+  }
+  .favorite{
+    float: left;
+    margin-right: 10px;
+    font-weight   : bold;
+    font-size     : 150%; 
+    color         : #ff0000;
   }
   .timestamp {
     color: $gray-light;
     display: block;
+    margin-top: 5px;
     margin-left: 60px;
   }
   .gravatar {
     float: left;
-    margin-right: 10px;
-    margin-top: 5px;
+    margin-right: 5px;
   }
 }
 
