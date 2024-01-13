@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# The view
+YouTube動画の投稿サイトとなります。
+いいね数に応じたランキングを表示いたします。
+レスポンシブ対応しております。
 
-Things you may want to cover:
+# 使用技術
+Ruby 3.2.2
+rails 7.0.4.3
+sqlite3 1.6.1
+puma 5.6.5
+rspec-rails 6.1.0
 
-* Ruby version
+# 機能一覧
+・ユーザー登録、ログイン機能(devise)
+　○ゲストログイン機能
+・投稿機能
+・いいね機能
+　○ランキング機能
+・検索機能(ransack)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# ER図
