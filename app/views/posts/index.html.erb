@@ -1,12 +1,16 @@
+<% provide(:title, "Search Results") %>
 <div class="row">
   <div class="col-md-8">
     <ol class="posts">
-      <li>
-        <% if @search_items %>
-          <%= render partial: 'posts/post', collection: @search_items, as: :post %>
-        <% else %>
+      <% if @search_items.any? %>
+        <% @search_items.each.with_index(1) do |post, i| %>
+          <li>
+            <%= render partial: 'posts/post', locals: { post: post } %>
+          </li>
         <% end %>
-      <li>
+      <% else %>
+        <li>No results found</li>
+      <% end %>
     </ol>
   </div>
 </div>
