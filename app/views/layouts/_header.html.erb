@@ -1,24 +1,24 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "トレンド動画", root_path, id: "logo" %>
-    <button id="hamburger" type="button" class="navbar-toggle collapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <div class="navbar-left col-xs-7">
-      <%= search_form_for @q, url: posts_path, html: { class: "form-inline", role: "form" } do |f| %>
-        <div class="input-group">
-          <%= f.text_field :title_cont, class: "form-control", placeholder: '動画を検索' %>
-          <span class="input-group-btn">
-            <%= f.submit "検索する", class: "btn btn-default" %>
-          </span>
-        </div>
-      <% end %>
-    </div>
-    <nav class="navbar-right">
-      <ul id="navbar-menu" class="nav navbar-nav collapse navbar-collapse">
+    <nav>
+      <div class="navbar-header">
+        <button id="hamburger" type="button" class="navbar-toggle collapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= search_form_for @q, url: posts_path, html: { class: "form-inline", role: "form" } do |f| %>
+          <div class="input-group">
+            <%= f.text_field :title_cont, class: "form-control", placeholder: '動画を検索' %>
+            <span class="input-group-btn">
+              <%= f.submit "検索する", class: "btn btn-default" %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <ul id="navbar-menu" class="nav navbar-nav navbar-right collapse navbar-collapse">
         <li><%= link_to "Home", root_path %></li>
         <% if user_signed_in? %>
           <li class="dropdown">

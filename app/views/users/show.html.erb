@@ -9,11 +9,36 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-    <% end %>
+    <div class="container">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Posts</a>
+        </li>
+        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">いいね</a></li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab1">
+          <% if @user.posts.any? %>
+            <ol class="posts">
+              <% @user.posts.each.with_index(1) do |post, i| %>
+                <li>
+                  <%= render partial: 'posts/post', locals: { post: post } %>
+                </li>
+              <% end %>
+            </ol>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab2">
+          <% if @favorite_posts.any? %>
+            <ol class="posts">
+              <% @favorite_posts.each.with_index(1) do |post, i| %>
+                <li>
+                  <%= render partial: 'posts/post', locals: { post: post } %>
+                </li>
+              <% end %>
+            </ol>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
