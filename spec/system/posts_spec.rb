@@ -23,11 +23,11 @@ RSpec.describe 'Post management', type: :system do
       it '「いいね」ボタンをクリックするといいね数が表示され、再度クリックするといいね数が減ること' do
         fill_in_post_form('テスト', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し')
         click_button 'Post'
-        click_on 'いいね', match: :first
-    
+
+        find('span', text: '0 いいね').click
         expect(page).to have_content('1 いいね')
     
-        click_on 'いいね', match: :first
+        find('span', text: '1 いいね').click
         expect(page).to have_content('0 いいね')
       end
     end
