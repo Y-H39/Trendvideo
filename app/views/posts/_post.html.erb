@@ -2,7 +2,7 @@
 <span class="user"><%= link_to post.user.name, post.user %></span>
 <span class="title"><%= post.title %></span>
 <div class="video-container">
-  <iframe class="url responsive" src="https://www.youtube.com/embed/<%=post.url.last(31)%>"
+  <iframe class="url" src="https://www.youtube.com/embed/<%=post.url.last(31)%>"
     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
 </div>
