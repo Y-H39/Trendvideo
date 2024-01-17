@@ -49,15 +49,15 @@ urls = [
 end
 
 guest_user = User.guest
-3.times do
+3.times do |n|
   post = guest_user.posts.create!(
     title: Faker::Lorem.sentence(word_count: 3),
     url: urls.sample,
     comment: Faker::Lorem.sentence(word_count: 5)
   )
 
-  users = User.order(:created_at).take(3)
+  users = User.order(:created_at).take(n+3)
   users.each { |user| user.favorites.create!(user_id: guest_user.id, post_id: post.id) }
-  target_post = Post.where.not(user_id: guest_user.id).order("RANDOM()").first
+  target_post = Post.where.not(user_id: guest_user.id).order(:created_at).find(n+1)
   guest_user.favorites.create!(user_id: guest_user.id, post_id: target_post.id)
 end
