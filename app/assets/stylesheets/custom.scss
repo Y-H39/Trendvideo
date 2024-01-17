@@ -205,9 +205,20 @@ input {
     font-size     : 150%; 
     color         : #000000;
   }
-  .url {
-    display: block;
-    margin-top: 5px;
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* アスペクト比 16:9 の場合 */
+    height: 0;
+    overflow: hidden;
+  }
+  .video-container iframe,
+  .video-container object,
+  .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   .comment {
     float: left;
