@@ -2,28 +2,7 @@
   <% @trend_items.each.with_index(1) do |post, i| %>
     <li>
       <span class="rank">第<%= i %>位</span>
-      <span class="gravatar"><%= link_to gravatar_for(post.user, size: 50), post.user %></span>
-      <span class="user"><%= link_to post.user.name, post.user %></span>
-      <span class="title"><%= post.title %></span>
-      <iframe class="url" width="560" height="315" src="https://www.youtube.com/embed/<%=post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <span class="comment"><%= post.comment %></span>
-      <% if user_signed_in? %>
-        <% if post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(post), data: { "turbo-method": :delete } do %>
-            <span class="favorite"><%= post.favorites.count %> いいね</span>
-          <% end %>
-        <% else %>
-          <%= link_to post_favorites_path(post), data: { "turbo-method": :post } do %>
-            <span class="favorite"><%= post.favorites.count %> いいね</span>
-          <% end %>
-        <% end %>
-      <% end %>
-      <span class="timestamp">
-        Posted <%= time_ago_in_words(post.created_at) %> ago.
-        <% if post.user == current_user %>
-          <%= link_to "delete", post_path(post.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
-        <% end %>
-      </span>
+      <%= render partial: 'posts/post', locals: { post: post } %>
     </li>
   <% end %>
 </ol>

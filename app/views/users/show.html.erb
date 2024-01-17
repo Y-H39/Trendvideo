@@ -20,7 +20,9 @@
           <% if @user.posts.any? %>
           <p>Posts (<%= @user.posts.count %>)</p>
           <ol class="posts">
-            <%= render @posts %>
+            <li>
+              <%= render @posts %>
+            <li>
           </ol>
           <% end %>
         </div>
