@@ -28,7 +28,15 @@
           <% end %>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab2">
-          <p>タブ2</p>
+          <% if @favorite_posts.any? %>
+            <ol class="posts">
+              <% @favorite_posts.each.with_index(1) do |post, i| %>
+                <li>
+                  <%= render partial: 'posts/post', locals: { post: post } %>
+                </li>
+              <% end %>
+            </ol>
+          <% end %>
         </div>
       </div>
     </div>
