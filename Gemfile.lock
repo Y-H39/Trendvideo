@@ -118,6 +118,8 @@ GEM
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
+    font-awesome-sass (6.5.1)
+      sassc (~> 2.0)
     formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -391,6 +393,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker (= 2.21.0)
+  font-awesome-sass
   guard (= 2.18.0)
   guard-minitest (= 2.4.6)
   importmap-rails (= 1.1.5)

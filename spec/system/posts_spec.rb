@@ -24,21 +24,22 @@ RSpec.describe 'Post management', type: :system do
         fill_in_post_form('テスト', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し')
         click_button 'Post'
 
-        find('span', text: '0 いいね').click
-        expect(page).to have_content('1 いいね')
+        find('.like-btn').click
+        expect(page).to have_selector('.favorite', text: '1')
     
-        find('span', text: '1 いいね').click
-        expect(page).to have_content('0 いいね')
+        find('.unlike-btn').click
+        expect(page).to have_selector('.favorite', text: '0')
       end
+
       it 'いいね一覧にいいねした投稿が表示されること' do
         fill_in_post_form('テスト', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し')
         click_button 'Post'
 
-        find('span', text: '0 いいね').click
-        expect(page).to have_content('1 いいね')
+        find('.like-btn').click
+        expect(page).to have_selector('.favorite', text: '1')
 
         find('li[role="presentation"] a[href="#tab2"]').click
-        expect(page).to have_content('1 いいね')
+        expect(page).to have_selector('.favorite', text: '1')
       end
     end
     

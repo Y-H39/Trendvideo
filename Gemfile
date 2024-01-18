@@ -18,6 +18,7 @@ gem "sqlite3",         "1.6.1"
 gem "devise"
 gem 'ransack'
 gem 'jquery-rails'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem "debug",   "1.7.1", platforms: %i[ mri mingw x64_mingw ]
