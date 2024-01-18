@@ -8,8 +8,9 @@ class PostsController < ApplicationController
       flash[:notice] = "Post created!"
       redirect_to user_path(current_user)
     else
+      @trend_items = Post.trend
       render 'pages/home', status: :unprocessable_entity
-     end
+    end
   end
   
   def destroy

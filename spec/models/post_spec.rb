@@ -25,5 +25,30 @@ RSpec.describe Post, type: :model do
         expect(trending_posts.count).to eq(10)
       end
     end
+
+    describe 'バリデーション' do
+      it '正しいデータは有効であること' do
+        valid_post = build(:post, user: user)
+        expect(valid_post).to be_valid
+      end
+
+      it 'タイトルが未入力の場合、無効であること' do
+        invalid_post = build(:post, user: user, title: '')
+        expect(invalid_post).to be_invalid
+      end
+
+      it 'URLが指定の文言から始まらない場合、無効であること' do
+        invalid_post = build(:post, user: user, url: 'https://example.com')
+        expect(invalid_post).to be_invalid
+      end
+
+      it 'タイトル、コメントが50文字を超える場合、無効であること' do
+        invalid_post = build(:post, user: user, title: 'a' * 51)
+        expect(invalid_post).to be_invalid
+
+        invalid_post = build(:post, user: user, comment: 'a' * 51)
+        expect(invalid_post).to be_invalid
+      end
+    end
   end
 end
