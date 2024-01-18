@@ -10,6 +10,10 @@ YouTube動画の投稿サイトとなります。
 # URL
 https://trendvideo.onrender.com
 
+# 開発理由  
+以前ニコニコ動画を利用していた際には非常によく利用したランキングページが  
+YouTube公式には存在しなかった為開発いたしました。  
+
 # 使用技術
 Ruby 3.2.2  
 rails 7.0.4.3  
@@ -70,3 +74,6 @@ rspec-rails 6.1.0
 
 # ER図
 ![erd_page-0001](https://github.com/Y-H39/rank_app/assets/147930743/b8e58de5-f556-4b89-bcd0-41983be3c4f9)
+
+# 今後の課題  
+検索機能が必要最低限しか実装できていない為、タグ機能等を実装して検索性を高めて行きたいです。
