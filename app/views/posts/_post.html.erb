@@ -9,15 +9,15 @@
 <span class="comment"><%= post.comment %></span>
 <% if user_signed_in? %>
   <% if post.favorited_by?(current_user) %>
-    <%= link_to post_favorites_path(post), class: "like-link", data: { "turbo-method": :delete } do %>
-      <i class="fa fa-heart unlike-btn"></i>
+    <%= link_to post_favorites_path(post), class: "favorite-link", data: { "turbo-method": :delete } do %>
+      <i class="fa fa-heart unfavorite-btn"></i>
     <% end %>
-    <span class="favorite"><%= post.favorites.count %> いいね</span>
+    <span class="favorite unfavorite-btn"><%= post.favorites.count %></span>
   <% else %>
-    <%= link_to post_favorites_path(post), class: "like-link", data: { "turbo-method": :post } do %>
-      <i class="fa fa-heart like-btn"></i>
+    <%= link_to post_favorites_path(post), class: "favorite-link", data: { "turbo-method": :post } do %>
+      <i class="fa fa-heart favorite-btn"></i>
     <% end %>
-    <span class="favorite"><%= post.favorites.count %> いいね</span>
+    <span class="favorite favorite-btn"><%= post.favorites.count %></span>
   <% end %>
 <% end %>
 <span class="timestamp">

@@ -228,25 +228,28 @@ input {
     margin-right: 10px;
   }
   .favorite{
-    float: left;
+    margin-top: 5px;
     margin-right: 10px;
     font-weight   : bold;
     font-size     : 150%; 
-    color         : #ff0000;
   }
-  .like-link {
+  .favorite-link {
+    margin-top: 5px;
     text-decoration: none;
   }
-  .like-link:hover {
+  .favorite-link:hover {
+    margin-top: 5px;
     background-color: #fff!important;
   }
-  .like-btn {
+  .favorite-btn {
+    margin-top: 7.5px;
     font-size: 15px;
     color: #808080;
   }
-  .unlike-btn {
+  .unfavorite-btn {
+    margin-top: 7.5px;
     font-size: 15px;
-    color: #e54747;
+    color: #ff0000;
   }
   .timestamp {
     color: $gray-light;

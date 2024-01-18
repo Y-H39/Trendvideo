@@ -24,10 +24,10 @@ RSpec.describe 'Post management', type: :system do
         fill_in_post_form('テスト', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し')
         click_button 'Post'
 
-        find('.like-btn').click
+        find('.favorite-link').click
         expect(page).to have_selector('.favorite', text: '1')
     
-        find('.unlike-btn').click
+        find('.favorite-link').click
         expect(page).to have_selector('.favorite', text: '0')
       end
 
@@ -35,7 +35,7 @@ RSpec.describe 'Post management', type: :system do
         fill_in_post_form('テスト', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し')
         click_button 'Post'
 
-        find('.like-btn').click
+        find('.favorite-link').click
         expect(page).to have_selector('.favorite', text: '1')
 
         find('li[role="presentation"] a[href="#tab2"]').click
