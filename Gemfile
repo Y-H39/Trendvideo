@@ -16,15 +16,16 @@ gem "puma",            "5.6.5"
 gem "bootsnap",        "1.16.0", require: false
 gem "sqlite3",         "1.6.1"
 gem "devise"
-gem 'ransack'
-gem 'jquery-rails'
-gem 'font-awesome-sass'
+gem "ransack",         "3.2.1"
+gem "jquery-rails"
+gem "font-awesome-sass"
+gem "acts-as-taggable-on"
 
 group :development, :test do
   gem "debug",   "1.7.1", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem 'rails-erd'
+  gem "rails-erd"
 end
 
 group :development do

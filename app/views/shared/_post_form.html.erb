@@ -7,6 +7,8 @@
     <td><%= f.text_field :url %></td>
     <th><%= f.label :comment ,"コメント" %></th>
     <td><%= f.text_area :comment %></td>
+    <th><%= f.label :tag_list ,"タグ" %></th>
+    <td><%= f.text_field :tag_list, value: @post.tag_list.join(',') %></td>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
