@@ -200,14 +200,14 @@ input {
   }
   .title{
     display: block;
-    margin-top: 5px;
     font-weight   : bold;
     font-size     : 150%; 
     color         : #000000;
   }
   .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* アスペクト比 16:9 の場合 */
+    padding-bottom: 56.25%;
+    margin-top: 5px;
     height: 0;
     overflow: hidden;
   }
@@ -227,12 +227,41 @@ input {
     margin-left: 60px;
     margin-right: 10px;
   }
+  .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  .tag:hover {
+    background-color: #2980b9;
+  }
   .favorite{
-    float: left;
+    margin-top: 5px;
     margin-right: 10px;
     font-weight   : bold;
     font-size     : 150%; 
-    color         : #ff0000;
+  }
+  .favorite-link {
+    margin-top: 5px;
+    text-decoration: none;
+  }
+  .favorite-link:hover {
+    margin-top: 5px;
+    background-color: #fff!important;
+  }
+  .favorite-btn {
+    margin-top: 7.5px;
+    font-size: 15px;
+    color: #808080;
+  }
+  .unfavorite-btn {
+    margin-top: 7.5px;
+    font-size: 15px;
+    color: #ff0000;
   }
   .timestamp {
     color: $gray-light;
