@@ -2,6 +2,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
+  def index
+    @tags = Post.tag_counts_on(:tags).order('count DESC') # 全タグ(Postモデルからtagsカラムを降順で取得)
+    if params[:tag].present? # タグ検索用
+      @tagged_posts = Post.tagged_with(params[:tag]) # タグに紐付く投稿
+    end
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
