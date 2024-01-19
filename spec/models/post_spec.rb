@@ -49,6 +49,13 @@ RSpec.describe Post, type: :model do
         invalid_post = build(:post, user: user, comment: 'a' * 51)
         expect(invalid_post).to be_invalid
       end
+
+      it 'タグが10文字を超える場合、エラーが追加されること' do
+        post.tag_list = ['tag_with_more_than_10_characters']
+        post.valid?
+
+        expect(post.errors[:base]).to include('Tag is too long')
+      end
     end
   end
 end
