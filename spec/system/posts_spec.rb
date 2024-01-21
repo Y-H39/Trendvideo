@@ -33,6 +33,7 @@ RSpec.describe 'Post management', type: :system do
 
       it '特定のタグで絞り込むと対象の投稿のみが表示されること' do
         click_on 'tag2', match: :first
+        expect(page).to have_content('「tag2」タグを含む動画 2件')
         expect(page).to have_content('テスト1')
         expect(page).to have_content('テスト2')
         expect(page).not_to have_content('テスト3')
@@ -40,6 +41,7 @@ RSpec.describe 'Post management', type: :system do
 
       it '別のタグで絞り込むと対象の投稿のみが表示されること' do
         click_on 'tag3', match: :first
+        expect(page).to have_content('「tag3」タグを含む動画 2件')
         expect(page).not_to have_content('テスト1')
         expect(page).to have_content('テスト2')
         expect(page).to have_content('テスト3')
@@ -79,6 +81,51 @@ RSpec.describe 'Post management', type: :system do
 
         expect(page).to have_content('Post deleted')
         expect(page).not_to have_content('テスト')
+      end
+    end
+  end
+
+  describe '検索のテスト' do
+    before do
+      sign_in user
+      visit root_path
+    end
+
+    context '検索機能が正しく動作すること' do
+      before do
+        fill_in_post_form('テスト1', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し1', 'tag1,tag2')
+        click_button 'Post'
+        visit root_path
+        fill_in_post_form('テスト2', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し2', 'tag2,tag3')
+        click_button 'Post'
+        visit root_path
+        fill_in_post_form('テスト3', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し3', 'tag3,tag4')
+        click_button 'Post'
+      end
+  
+      it 'タイトルで検索できること' do
+        fill_in 'q_title_or_tags_name_cont', with: 'テスト1'
+        click_button '検索する'
+  
+        expect(page).to have_content('「テスト1」を含む動画 1件')
+        expect(page).to have_content('テスト1')
+        expect(page).not_to have_content('テスト2')
+        expect(page).not_to have_content('テスト3')
+      end
+  
+      it 'タグで検索できること' do
+        fill_in 'q_title_or_tags_name_cont', with: 'tag3'
+        click_button '検索する'
+  
+        expect(page).to have_content('「tag3」を含む動画 2件')
+        expect(page).not_to have_content('テスト1')
+        expect(page).to have_content('テスト2')
+        expect(page).to have_content('テスト3')
+      end
+  
+      it '空欄の場合は何も返さないこと' do
+        click_button '検索する'
+        expect(page).to have_content('No results found')
       end
     end
   end

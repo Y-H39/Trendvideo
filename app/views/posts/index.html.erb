@@ -3,12 +3,14 @@
   <div class="col-md-8">
     <ol class="posts">
       <% if @tagged_posts.present? %>
+        <h3>「<%= @tag_name %>」タグを含む動画 <%= @tagged_posts.count %>件</h3>
         <% @tagged_posts.each.with_index(1) do |post, i| %>
           <li>
             <%= render partial: 'posts/post', locals: { post: post } %>
           </li>
         <% end %>
       <% elsif @search_items.present? %>
+        <h3>「<%= params[:q][:title_or_tags_name_cont] %>」を含む動画 <%= @search_items.count %>件</h3>
         <% @search_items.each.with_index(1) do |post, i| %>
           <li>
             <%= render partial: 'posts/post', locals: { post: post } %>
