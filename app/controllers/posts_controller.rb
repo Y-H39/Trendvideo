@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @tags = Post.tag_counts_on(:tags).order('count DESC')
     if params[:tag].present?
+      @tag_name = params[:tag]
       @tagged_posts = Post.tagged_with(params[:tag])
     end
   end

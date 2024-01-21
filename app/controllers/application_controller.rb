@@ -4,12 +4,17 @@ class ApplicationController < ActionController::Base
 
   def search
     @q = Post.ransack(params[:q])
-    @search_items = @q.result(distinct: true).order(created_at: "DESC").includes(:user)
+    unless params[:q].nil? || params[:q].values.all?(&:blank?)
+      @search_items = @q.result(distinct: true).order(created_at: "DESC").includes(:user)
+    else
+      @search_items = []
+    end
   end
-  
+
   protected
+
   def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 end
