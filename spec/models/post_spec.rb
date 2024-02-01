@@ -26,6 +26,28 @@ RSpec.describe Post, type: :model do
       end
     end
 
+    describe '.top_tags' do
+      it 'タグの使用回数が多い上位5件のタグを返すこと' do
+        post1 = create(:post, tag_list: ['1st', '2st'])
+        post2 = create(:post, tag_list: ['1st', '3st'])
+        post3 = create(:post, tag_list: ['1st', '3st'])
+        post4 = create(:post, tag_list: ['1st', '3st'])
+        post5 = create(:post, tag_list: ['1st', '4st'])
+        post6 = create(:post, tag_list: ['2st', '4st'])
+        post6 = create(:post, tag_list: ['2st', '5st'])
+        post6 = create(:post, tag_list: ['2st'])
+  
+        top_tags = Post.top_tags(5)
+  
+        expect(top_tags.length).to eq(5)
+        expect(top_tags[0].name).to eq('1st')
+        expect(top_tags[1].name).to eq('2st')
+        expect(top_tags[2].name).to eq('3st')
+        expect(top_tags[3].name).to eq('4st')
+        expect(top_tags[4].name).to eq('5st')
+      end
+    end
+
     describe 'バリデーション' do
       it '正しいデータは有効であること' do
         valid_post = build(:post, user: user)

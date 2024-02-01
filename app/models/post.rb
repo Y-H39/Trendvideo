@@ -16,6 +16,10 @@ class Post < ApplicationRecord
     Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
   end
 
+  def self.top_tags(limit = 5)
+    ActsAsTaggableOn::Tag.order(taggings_count: :desc).limit(limit)
+  end
+
   private
   def url_should_start_with_youtube
     unless url&.start_with?("https://youtu.be/")

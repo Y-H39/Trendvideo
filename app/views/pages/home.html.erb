@@ -1,5 +1,6 @@
 <% provide(:title, "Home") %>
 <div class="row">
+  <%= render 'shared/tag_list' %>
   <% if user_signed_in? %>
     <aside class="col-md-4">
       <section class="user_info">
