@@ -1,15 +1,21 @@
 <h3 class="trend">ランキング</h3>
 <div class="container" style="width: 100%;">
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">全期間</a>
+    <li role="presentation" class="active">
+      <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">週間</a>
     </li>
-    <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">週間</a></li>
+    <li role="presentation">
+      <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">月間</a>
+    </li>
+    <li role="presentation">
+      <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">全期間</a>
+    </li>
   </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="tab1">
-      <% if @trend_items.any? %>
+    <div role="tabpanel" class="tab-pane" id="tab1">
+      <% if @weekly_trend_items.any? %>
         <ol class="posts">
-          <% @trend_items.each.with_index(1) do |post, i| %>
+          <% @weekly_trend_items.each.with_index(1) do |post, i| %>
             <li>
               <span class="rank">第<%= i %>位</span>
               <%= render partial: 'posts/post', locals: { post: post } %>
@@ -18,10 +24,22 @@
         </ol>
       <% end %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="tab2">
-      <% if @weekly_trend_items.any? %>
+        <div role="tabpanel" class="tab-pane active" id="tab2">
+      <% if @monthly_trend_items.any? %>
         <ol class="posts">
-          <% @weekly_trend_items.each.with_index(1) do |post, i| %>
+          <% @monthly_trend_items.each.with_index(1) do |post, i| %>
+            <li>
+              <span class="rank">第<%= i %>位</span>
+              <%= render partial: 'posts/post', locals: { post: post } %>
+            </li>
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+    <div role="tabpanel" class="tab-pane active" id="tab3">
+      <% if @trend_items.any? %>
+        <ol class="posts">
+          <% @trend_items.each.with_index(1) do |post, i| %>
             <li>
               <span class="rank">第<%= i %>位</span>
               <%= render partial: 'posts/post', locals: { post: post } %>

@@ -18,13 +18,15 @@ RSpec.describe Post, type: :model do
     end
 
     describe '.combined_trends' do
-      it 'トレンドアイテムと週間トレンドアイテムを含むハッシュを返すこと' do
+      it 'トレンドアイテム、週間トレンドアイテム、月間トレンドアイテムを含むハッシュを返すこと' do
         15.times { create(:favorite, post: create(:post)) }
-        15.times { create(:favorite, post: create(:post, created_at: 2.weeks.ago)) }
-
+        15.times { create(:favorite, post: create(:post, created_at: 1.weeks.ago)) }
+        15.times { create(:favorite, post: create(:post, created_at: 1.month.ago)) }
+    
         combined_trends = Post.combined_trends
         expect(combined_trends[:trend_items].count).to eq(10)
         expect(combined_trends[:weekly_trend_items].count).to eq(10)
+        expect(combined_trends[:monthly_trend_items].count).to eq(10)
       end
     end
 
