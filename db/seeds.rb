@@ -53,7 +53,7 @@ tag_lists = [
   url = urls[n]
   comment = Faker::Lorem.sentence(word_count: 3)
   tag_list = tag_lists[n]
-  user.posts.create!(title: title, url: url, comment: comment, tag_list: tag_list)
+  user.posts.create!(title: title, url: url, comment: comment, tag_list: tag_list, created_at: Time.current - n.days)
 
   users = User.order(:created_at).take(n+3)
   post = Post.find(n+1)

@@ -12,8 +12,13 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.trend
-    Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+  def self.combined_trends
+    trend_items = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    weekly_trend_items = Post.find(Favorite.joins(:post).where('posts.created_at >= ?', 1.week.ago).group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    {
+      trend_items: trend_items,
+      weekly_trend_items: weekly_trend_items
+    }
   end
 
   def self.top_tags(limit = 5)

@@ -16,7 +16,9 @@ class PostsController < ApplicationController
       flash[:notice] = "Post created!"
       redirect_to user_path(current_user)
     else
-      @trend_items = Post.trend
+      trends_data = Post.combined_trends
+      @trend_items = trends_data[:trend_items]
+      @weekly_trend_items = trends_data[:weekly_trend_items]
       render 'pages/home', status: :unprocessable_entity
     end
   end
