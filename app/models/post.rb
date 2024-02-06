@@ -23,7 +23,7 @@ class Post < ApplicationRecord
     }
   end
 
-  def self.top_tags(limit = 5)
+  def self.top_tags(limit = 10)
     ActsAsTaggableOn::Tag.order(taggings_count: :desc).limit(limit)
   end
 

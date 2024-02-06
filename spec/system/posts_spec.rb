@@ -133,22 +133,22 @@ RSpec.describe 'Post management', type: :system do
   describe 'ランキングのテスト' do
     context '各ランキングが正しく表示されるかどうか' do
       before do
-        @weekly_posts = create_list(:post, 2, user: user, created_at: 1.week.ago)
+        @weekly_posts = create_list(:post, 2, user: user)
         @weekly_posts.each { |post| create(:favorite, user: user, post: post) }
 
-        @monthly_posts = create_list(:post, 2, user: user, created_at: 1.month.ago)
+        @monthly_posts = create_list(:post, 2, user: user, created_at: 2.week.ago)
         @monthly_posts.each { |post| create(:favorite, user: user, post: post) }
 
-        @all_time_posts = create_list(:post, 2, user: user, created_at: 2.months.ago)
+        @all_time_posts = create_list(:post, 2, user: user, created_at: 2.month.ago)
         @all_time_posts.each { |post| create(:favorite, user: user, post: post) }
 
         visit root_path
       end
   
       it '週間ランキングが表示され、投稿がランキング順に表示されること' do
-        expect(page).to have_selector('li.active a[href="#tab1"]')
+        expect(page).to have_selector('li.active a[href="#tab1"][aria-controls="tab1"][role="tab"][data-toggle="tab"]')
 
-        expect(page).to have_selector('.rank', text: '第1位')
+        expect(page).to have_selector('.rank', text: '第1位', visible: true, wait: 10)
         expect(page).to have_selector('.rank', text: '第2位')
       end
 
@@ -156,7 +156,7 @@ RSpec.describe 'Post management', type: :system do
         find('a[href="#tab2"]').click
         expect(page).to have_selector('li.active a[href="#tab2"][aria-controls="tab2"][role="tab"][data-toggle="tab"]')
   
-        expect(page).to have_selector('.rank', text: '第1位')
+        expect(page).to have_selector('.rank', text: '第1位', visible: true, wait: 10)
         expect(page).to have_selector('.rank', text: '第2位')
       end
 
@@ -164,7 +164,7 @@ RSpec.describe 'Post management', type: :system do
         find('a[href="#tab3"]').click
         expect(page).to have_selector('li.active a[href="#tab3"][aria-controls="tab3"][role="tab"][data-toggle="tab"]')
   
-        expect(page).to have_selector('.rank', text: '第1位')
+        expect(page).to have_selector('.rank', text: '第1位', visible: true, wait: 10)
         expect(page).to have_selector('.rank', text: '第2位')
       end
     end

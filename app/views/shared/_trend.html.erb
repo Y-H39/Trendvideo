@@ -12,7 +12,7 @@
     </li>
   </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane" id="tab1">
+    <div role="tabpanel" class="tab-pane active" id="tab1">
       <% if @weekly_trend_items.any? %>
         <ol class="posts">
           <% @weekly_trend_items.each.with_index(1) do |post, i| %>
@@ -24,7 +24,7 @@
         </ol>
       <% end %>
     </div>
-    <div role="tabpanel" class="tab-pane active" id="tab2">
+    <div role="tabpanel" class="tab-pane" id="tab2">
       <% if @monthly_trend_items.any? %>
         <ol class="posts">
           <% @monthly_trend_items.each.with_index(1) do |post, i| %>
@@ -36,7 +36,7 @@
         </ol>
       <% end %>
     </div>
-    <div role="tabpanel" class="tab-pane active" id="tab3">
+    <div role="tabpanel" class="tab-pane" id="tab3">
       <% if @trend_items.any? %>
         <ol class="posts">
           <% @trend_items.each.with_index(1) do |post, i| %>
