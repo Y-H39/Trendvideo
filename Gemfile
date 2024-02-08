@@ -20,11 +20,11 @@ gem "ransack",         "3.2.1"
 gem "jquery-rails"
 gem "font-awesome-sass"
 gem "acts-as-taggable-on"
+gem 'factory_bot_rails'
 
 group :development, :test do
   gem "debug",   "1.7.1", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
-  gem "factory_bot_rails"
   gem "rails-erd"
 end
 
