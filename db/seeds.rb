@@ -65,21 +65,9 @@ end
 # ゲストユーザー
 guest_user = User.guest
 guest_post_data = [
-  {
-    title: "初心LOVE",
-    url: "https://youtu.be/qNrRnnG8glY?si=Cb25mumJ9faqlZB4",
-    tag_list: "なにわ男子,MV,ゲスト"
-  },
-  {
-    title: "FEARLESS",
-    url: "https://youtu.be/DiGnWwgLAfE?si=Bmh_gyQH2tOOVA4h",
-    tag_list: "ルセラ,MV,ゲスト"
-  },
-  {
-    title: "アンダーキッズ",
-    url: "https://youtu.be/TBoBfT-_sfM?si=Qgd888185ov200x9",
-    tag_list: "ツユ,MV,ゲスト"
-  }
+  { title: "初心LOVE", url: "https://youtu.be/qNrRnnG8glY?si=Cb25mumJ9faqlZB4", tag_list: "なにわ男子,MV,ゲスト"},
+  { title: "FEARLESS", url: "https://youtu.be/DiGnWwgLAfE?si=Bmh_gyQH2tOOVA4h", tag_list: "ルセラ,MV,ゲスト"},
+  { title: "アンダーキッズ", url: "https://youtu.be/TBoBfT-_sfM?si=Qgd888185ov200x9", tag_list: "ツユ,MV,ゲスト"}
 ]
 
 3.times do |n|
