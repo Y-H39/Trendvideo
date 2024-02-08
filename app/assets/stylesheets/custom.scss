@@ -62,6 +62,11 @@ p {
 
 /* header */
 
+.navbar-inverse{
+  background-color: #c4302b;
+  border: none;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -115,6 +120,13 @@ aside {
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;
+    }
+    .btn-primary{
+      background-color: #c4302b;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #c14d49;
     }
   }
 }
@@ -176,6 +188,60 @@ input {
   display: block;
 }
 
+/* tab */
+
+.nav-tabs {
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.nav-tabs > li {
+  border: 1px solid #ddd;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.nav-tabs > li.active {
+  background: #fff;
+  border-bottom-color: transparent;
+}
+
+.nav-tabs > li.active > a {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.nav-tabs > li > a {
+  margin-right: 0;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}
+
+.tab-content {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.nav-tabs > li > a:hover {
+  background: #f0f0f0;
+}
+
 /* posts */
 
 .posts {
@@ -227,18 +293,6 @@ input {
     margin-left: 60px;
     margin-right: 10px;
   }
-  .tag {
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 2px;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-  }
-  .tag:hover {
-    background-color: #2980b9;
-  }
   .favorite{
     margin-top: 5px;
     margin-right: 10px;
@@ -261,7 +315,7 @@ input {
   .unfavorite-btn {
     margin-top: 7.5px;
     font-size: 15px;
-    color: #ff0000;
+    color: #ff00ae;
   }
   .timestamp {
     color: $gray-light;
@@ -272,6 +326,27 @@ input {
   .gravatar {
     float: left;
     margin-right: 5px;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 2px;
+  background-color: #050000;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.tag:hover {
+  color: #fff;
+  background-color: #1e1d1d;
+}
+.top_tags{
+  margin-left: 10px;
+  margin-bottom: 20px;
+  span {
+    font-weight: bold;
   }
 }
 
@@ -288,3 +363,9 @@ span.image {
     border: 0;
   }
 }
+
+.trend{
+  font-weight: bold;
+  margin-left: 10px;
+}
+

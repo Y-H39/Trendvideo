@@ -1,0 +1,10 @@
+<div class="top_tags">
+  <span >人気のタグ</span>
+  <% if @top_tags.any? %>
+    <% @top_tags.each do |tag| %>
+        <%= link_to "#{tag.name} (#{tag.taggings_count})", posts_path(tag: tag.name), class: 'tag' %>
+    <% end %>
+  <% else %>
+    <p>No tags available.</p>
+  <% end %>
+</div>

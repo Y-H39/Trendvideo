@@ -17,12 +17,38 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    describe '.trend' do
-      it 'お気に入りが多い上位10件のポストを返すこと' do
+    describe '.combined_trends' do
+      it 'トレンドアイテム、週間トレンドアイテム、月間トレンドアイテムを含むハッシュを返すこと' do
         15.times { create(:favorite, post: create(:post)) }
+        15.times { create(:favorite, post: create(:post, created_at: 1.weeks.ago)) }
+        15.times { create(:favorite, post: create(:post, created_at: 1.month.ago)) }
+    
+        combined_trends = Post.combined_trends
+        expect(combined_trends[:trend_items].count).to eq(10)
+        expect(combined_trends[:weekly_trend_items].count).to eq(10)
+        expect(combined_trends[:monthly_trend_items].count).to eq(10)
+      end
+    end
 
-        trending_posts = Post.trend
-        expect(trending_posts.count).to eq(10)
+    describe '.top_tags' do
+      it 'タグの使用回数が多い上位5件のタグを返すこと' do
+        post1 = create(:post, tag_list: ['1st', '2st'])
+        post2 = create(:post, tag_list: ['1st', '3st'])
+        post3 = create(:post, tag_list: ['1st', '3st'])
+        post4 = create(:post, tag_list: ['1st', '3st'])
+        post5 = create(:post, tag_list: ['1st', '4st'])
+        post6 = create(:post, tag_list: ['2st', '4st'])
+        post6 = create(:post, tag_list: ['2st', '5st'])
+        post6 = create(:post, tag_list: ['2st'])
+  
+        top_tags = Post.top_tags(5)
+  
+        expect(top_tags.length).to eq(5)
+        expect(top_tags[0].name).to eq('1st')
+        expect(top_tags[1].name).to eq('2st')
+        expect(top_tags[2].name).to eq('3st')
+        expect(top_tags[3].name).to eq('4st')
+        expect(top_tags[4].name).to eq('5st')
       end
     end
 
