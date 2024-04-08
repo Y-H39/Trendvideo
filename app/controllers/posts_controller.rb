@@ -20,6 +20,7 @@ class PostsController < ApplicationController
       @trend_items = trends_data[:trend_items]
       @weekly_trend_items = trends_data[:weekly_trend_items]
       @monthly_trend_items = trends_data[:monthly_trend_items]
+      @top_tags = Post.top_tags
       render 'pages/home', status: :unprocessable_entity
     end
   end
