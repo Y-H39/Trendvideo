@@ -19,6 +19,16 @@ RSpec.describe 'Post management', type: :system do
       end
     end
 
+    context '投稿が失敗したとき' do
+      it '必須項目が入力されていないとエラーメッセージが表示されること' do
+        fill_in_post_form('', '', '', '')
+        click_button 'Post'
+    
+        expect(page).to have_content("Title can't be blank")
+        expect(page).to have_content("Url は'https://youtu.be/'から始まる必要があります")
+      end
+    end
+
     context 'タグで絞り込むとき' do
       before do
         fill_in_post_form('テスト1', 'https://youtu.be/QfQhyDBSGG0?si=bJ0dukmnD__EAFbK', 'お試し1', 'tag1,tag2')
